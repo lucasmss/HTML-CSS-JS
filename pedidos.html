@@ -26,16 +26,16 @@
 	</div>
 
 	<div class="form">
-		<form name="Encomendas" method="" action="">
+		<form name="Encomendas" method="POST">
 			<!--Tag de formulário-->
 
 			<div class="form-name">
 
 				<h2 class="sub-titu">Dados</h2>
 
-				<p><label name="nome" id="nome">Nome: </label>
+				<p><label  id="nome">Nome: </label>
 					<!--A tag label define um rotulo para determinado input-->
-					<input type="text" name="nome" id="nome" size="70" maxlength="50" required="required" /></p>
+					<input type="text" size="70"maxlength="50" required="required"/></p>
 				<!--Usados para determinar um controle de entrada-->
 				<!--A TAG requird significa que o usuário é obrigado a prencher aquele campo-->
 
@@ -141,8 +141,9 @@
 
 				<p><textarea name="observacao" id="observacao" cols="70" rows="4"> </textarea></p>
 
-				<button id="btn" value="Comprar">Comprar</button>
-				<button id="btn2" value="Cancelar">Cancelar</button>
+				<button  id="btnCompra" onclick="cadastro()" value="Comprar" >Comprar</button>
+				<button  id="btnCancel" onclick="cancela()" value="Cancelar" >Cancelar</button>
+
 
 			</div>
 
@@ -156,27 +157,38 @@
 		</form>
 
 		<script>
-			var x =document.getElementById('uf');
 
-			if(x != ""){
+			function cadastro() {//se o usuario começar a compra chama essa função
 
-			var botao = document.getElementById("btn");
-			
-			botao.addEventListener("click", function () {
-				alert("Compra concluida com SUCESSO")
+				var nome = document.getElementById('nome');//declara qual botão
 
-			})
+				if(nome == "") {
 
-			var botao = document.getElementById("btn2");
-
-			botao.addEventListener("click", function () {
-				alert("Compra CANCELADA com sucesso!")
+					document.getElementById('nome').focus();//declara qual campo e foca nele ate voce concluir
+					return;
+				}else if(nome !=""){
 				
-			})
-		}else{
+				completo(); //chama completo quando tiver tudo ok..
 
-			alert('Dados incompletos!!!');
-		}
+				}
+			}
+			
+			function completo(){ //caso a compra seja realizaada com sucesso.
+
+				var btnCompra = document.getElementById("btnCompra"); //declara qual botão
+				var btnCancel = document.getElementById("btnCancel");//declara qual botão
+
+				if(nome !="" ){
+					alert("Compra concluida com sucesso!!!");// mesagem mostrada na tela
+
+				}
+			}
+
+				function cancela(){ //se o usuario cancelar a compra chama essa função
+					var btnCancel = document.getElementById("btnCancel"); //declara qual botão 
+
+					alert("Compra cancelada com sucesso.");// mesagem mostrada na tela
+				}
 
 		</script>
 
